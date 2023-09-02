@@ -10,11 +10,6 @@ import org.testng.annotations.BeforeClass;
 import java.time.Duration;
 
 public abstract class BaseTest extends Assert {
-//    String url;
-
-//    public BaseTest(String url) {
-//        this.url = url;
-//    }
 
     private static WebDriver driver;
 
