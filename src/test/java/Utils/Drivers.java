@@ -31,7 +31,7 @@ public class Drivers {
                 file = new File(DRIVERPATH + "geckodriver.exe");
                 System.setProperty("webdriver.firefox.marionette", file.getAbsolutePath());
                 FirefoxOptions optionsFirefox = new FirefoxOptions();
-                optionsFirefox.addArguments("--headless");
+               // optionsFirefox.addArguments("--headless");
                 driver = new FirefoxDriver(optionsFirefox);
                 break;
 

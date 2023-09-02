@@ -10,12 +10,11 @@ import org.testng.annotations.BeforeClass;
 import java.time.Duration;
 
 public abstract class BaseTest extends Assert {
-    String url;
-    String pathParameters = "src/test/resources/testParameter.xlsx";
+//    String url;
 
-    public BaseTest(String url) {
-        this.url = url;
-    }
+//    public BaseTest(String url) {
+//        this.url = url;
+//    }
 
     private static WebDriver driver;
 
@@ -29,8 +28,6 @@ public abstract class BaseTest extends Assert {
         driver = Drivers.getDriver(Browser.CHROME);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.navigate().to(url);
-
     }
 
     @AfterClass
