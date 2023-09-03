@@ -9,6 +9,6 @@ public class FileCreationTest extends BaseTest {
     @Test
     public void checkFileCreationOnYandexDisk(){
         ActionYandexDisk actionYandexDisk = new ActionYandexDisk();
-        actionYandexDisk.createNewFile(TestData.LOGIN, TestData.PASSWORD, "1");
+        actionYandexDisk.createNewFile(TestData.LOGIN, TestData.PASSWORD, "1", "Таблицу", "Таб1");
     }
 }

@@ -16,8 +16,14 @@ public class DiskPage extends BasePage{
     @FindBy (xpath = "//input[@text=\"Новая папка\"]")
     WebElement nameFolderBox;
 
+    @FindBy (xpath = "//h2[contains(text(),\"Укажите название\")]/..//input")
+    WebElement nameFileBox;
+
     @FindBy (xpath = "//span[text()=\"Сохранить\"]/..")
     WebElement saveButton;
+
+    @FindBy (xpath = "//h2[contains(text(),\"Укажите название\")]/..//span[text()=\"Создать\"]/..")
+    WebElement createDocButton;
 
 
     public void createNewFolder(String name){
@@ -32,6 +38,15 @@ public class DiskPage extends BasePage{
         WebElement file = driver.findElement(By.xpath("//div[@class=\"client-listing\"]//span[text()=\"" + name + "\"]"));
         Actions actions = new Actions(driver);
         actions.doubleClick(file).perform();
+
+    }
+    public void createNewFile(String type, String name){
+        createButton.click();
+        WebElement typeFile = driver.findElement(By.xpath("//span[text()=\"" + type + "\"]"));
+        typeFile.click();
+        nameFileBox.clear();
+        nameFileBox.sendKeys(name);
+        createDocButton.click();
 
     }
 }
