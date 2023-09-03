@@ -20,6 +20,7 @@ public class ActionYandexDisk {
         createFolder(nameFolder);
         openFolder(nameFolder);
         createFile(typeFile, nameFile);
+        closeFile();
 
 
     }
@@ -52,7 +53,18 @@ public class ActionYandexDisk {
     }
 
     public void createFile(String typeFile, String name){
+
         DiskPage diskPage = new DiskPage();
         diskPage.createNewFile(typeFile, name);
+    }
+
+    public void closeFile(){
+        String currentHandle = getDriver().getWindowHandle();
+        Set<String> handlesSet = getDriver().getWindowHandles();
+        List<String> handlesList = new ArrayList<String>(handlesSet);
+        getDriver().switchTo().window(handlesList.get(2));
+        getDriver().close();
+        getDriver().switchTo().window(currentHandle);
+
     }
 }

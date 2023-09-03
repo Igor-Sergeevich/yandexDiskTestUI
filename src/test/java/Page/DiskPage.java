@@ -1,9 +1,11 @@
 package Page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+
 
 public class DiskPage extends BasePage{
 
@@ -29,8 +31,9 @@ public class DiskPage extends BasePage{
     public void createNewFolder(String name){
         createButton.click();
         folderButton.click();
-        nameFolderBox.clear();
-        nameFolderBox.sendKeys(name);
+        nameFolderBox.click();
+        clearBox(nameFileBox);
+        nameFileBox.sendKeys(name);
         saveButton.click();
     }
 
@@ -44,9 +47,16 @@ public class DiskPage extends BasePage{
         createButton.click();
         WebElement typeFile = driver.findElement(By.xpath("//span[text()=\"" + type + "\"]"));
         typeFile.click();
-        nameFileBox.clear();
+        clearBox(nameFileBox);
         nameFileBox.sendKeys(name);
         createDocButton.click();
 
+    }
+
+    public void clearBox(WebElement element){
+
+        while (element.getAttribute("text").length()!=0) {
+            element.sendKeys(Keys.BACK_SPACE);
+        }
     }
 }
