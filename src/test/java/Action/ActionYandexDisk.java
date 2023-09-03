@@ -13,11 +13,12 @@ import static Tests.BaseTest.getDriver;
 
 public class ActionYandexDisk {
 
-    public void createNewFile(String login, String password){
+    public void createNewFile(String login, String password, String nameFolder){
         getDriver().navigate().to("http://yandex.ru");
         authorization(login, password);
         goToDisk();
-        createFolder("1");
+        createFolder(nameFolder);
+        openFolder(nameFolder);
 
 
     }
@@ -42,5 +43,10 @@ public class ActionYandexDisk {
     public void createFolder(String name){
         DiskPage diskPage = new DiskPage();
         diskPage.createNewFolder(name);
+    }
+
+    public void openFolder(String name){
+        DiskPage diskPage = new DiskPage();
+        diskPage.openFile(name);
     }
 }
