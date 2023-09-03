@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 public class FileCreationTest extends BaseTest {
 
     @Test
-    public void checkFileCreationOnYandexDisk() {
+    public void checkFileCreationOnYandexDisk() throws InterruptedException {
         ActionYandexDisk actionYandexDisk = new ActionYandexDisk();
         actionYandexDisk.createNewFile(TestData.LOGIN, TestData.PASSWORD);
     }

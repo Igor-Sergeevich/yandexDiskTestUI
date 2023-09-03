@@ -13,5 +13,6 @@ public abstract class BasePage {
         this.driver = getDriver();
         PageFactory.initElements(driver, this);
     }
+
 }
 
