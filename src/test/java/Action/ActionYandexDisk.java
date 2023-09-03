@@ -1,5 +1,6 @@
 package Action;
 
+import Page.DiskPage;
 import Page.IdYandexPage;
 import Page.PassportYandexPage;
 import Page.YandexPage;
@@ -16,6 +17,7 @@ public class ActionYandexDisk {
         getDriver().navigate().to("http://yandex.ru");
         authorization(login, password);
         goToDisk();
+        createFolder("1");
 
 
     }
@@ -35,5 +37,10 @@ public class ActionYandexDisk {
         getDriver().switchTo().window(handlesList.get(1));
         IdYandexPage idYandexPage = new IdYandexPage();
         idYandexPage.diskClick();
+    }
+
+    public void createFolder(String name){
+        DiskPage diskPage = new DiskPage();
+        diskPage.createNewFolder(name);
     }
 }
