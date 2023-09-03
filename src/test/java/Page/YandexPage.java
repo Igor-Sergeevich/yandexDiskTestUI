@@ -17,6 +17,9 @@ public class YandexPage extends BasePage {
     @FindBy(xpath = "//a[@aria-label=\"Информация о профиле\"]")
     WebElement infoProfileButton;
 
+    @FindBy (xpath = "//div[@aria-label=\"Действия с профилем\"]//span[text()=\"Выйти\"]")
+    WebElement exitButton;
+
     public void enterButtonClick() {
         enterButton.click();
         enterFromIDButton.click();
@@ -25,5 +28,10 @@ public class YandexPage extends BasePage {
     public void goToProfile(){
         profileButton.click();
         infoProfileButton.click();
+    }
+
+    public void exitAccount(){
+        profileButton.click();
+        exitButton.click();
     }
 }
