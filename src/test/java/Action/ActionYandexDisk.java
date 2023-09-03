@@ -12,8 +12,10 @@ import java.util.Set;
 import static Tests.BaseTest.getDriver;
 
 public class ActionYandexDisk {
+    private int initialNumberOfFiles = 0;
+    private int finalNumberOfFiles = 0;
 
-    public void createNewFile(String login, String password, String nameFolder, String typeFile, String nameFile){
+    public String createNewFile(String login, String password, String nameFolder, String typeFile, String nameFile){
         getDriver().navigate().to("http://yandex.ru");
         authorization(login, password);
         goToDisk();
@@ -21,9 +23,9 @@ public class ActionYandexDisk {
         openFolder(nameFolder);
         createFile(typeFile, nameFile);
         closeFile();
-
-
+        return checkAddFile();
     }
+
     public void authorization(String login, String password){
         YandexPage yandexPage = new YandexPage();
         yandexPage.enterButtonClick();
@@ -50,6 +52,7 @@ public class ActionYandexDisk {
     public void openFolder(String name){
         DiskPage diskPage = new DiskPage();
         diskPage.openFile(name);
+        initialNumberOfFiles = diskPage.numberOfFiles();
     }
 
     public void createFile(String typeFile, String name){
@@ -67,4 +70,21 @@ public class ActionYandexDisk {
         getDriver().switchTo().window(currentHandle);
 
     }
+    public String checkAddFile(){
+        DiskPage diskPage = new DiskPage();
+        finalNumberOfFiles = diskPage.numberOfFiles();
+        if (finalNumberOfFiles-initialNumberOfFiles == 1){
+            return "File created";
+        }else if (finalNumberOfFiles - initialNumberOfFiles == 0){
+            return "File not created";
+        }else return  "Changed the number of files by " + (finalNumberOfFiles - initialNumberOfFiles);
+    }
+
+    public String returnNameLastFile(){
+        DiskPage diskPage = new DiskPage();
+        String nameFile = diskPage.nameLastFile();
+        return nameFile.substring(0, nameFile.lastIndexOf("."));
+
+    }
+
 }
